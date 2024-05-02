@@ -25,14 +25,15 @@ running = True
 while running:
     screen.fill(color)
     for event in pygame.event.get():             #check actions with cycle -> for
-        if event.type == pygame.QUIT:            #save in event
+        if event.type == pygame.QUIT:            #save in event and end
             running = False
-        if event.type == pygame.MOUSEBUTTONDOWN:  #
-            mouse_x, mouse_y = pygame.mouse.get_pos()
-            if target_x < mouse_x < target_x + target_width and target_y < mouse_y < target_y + target_height:
-                target_x = random.randint(0, SCREEN_WIDTH - target_width)
-                target_y = random.randint(0, SCREEN_HEIGHT - target_height)
-    pygame.display.update()
+        if event.type == pygame.MOUSEBUTTONDOWN:  #event type key down
+            mouse_x, mouse_y = pygame.mouse.get_pos()   #mouse click position
+            if target_x < mouse_x < target_x + target_width and target_y < mouse_y < target_y + target_height:   #targeting point
+                target_x = random.randint(0, SCREEN_WIDTH - target_width)   #random target right_left side
+                target_y = random.randint(0, SCREEN_HEIGHT - target_height) #random target up_down side
+    screen.blit(target_img, (target_x, target_y))    #image on screen
+    pygame.display.update()     #refresh the screen
 
 
 pygame.quit()
